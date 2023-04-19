@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/back-end/authentication/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/back-end/company/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/back-end/elasticsearch/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/back-end/email/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/back-end/eureka-server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/back-end/gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/back-end/gitconfig/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/back-end/inspection/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/back-end/user/src/main/java" charset="UTF-8" />
+  </component>
+</project>

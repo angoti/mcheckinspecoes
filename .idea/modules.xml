@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/back-end/authentication/authentication.iml" filepath="$PROJECT_DIR$/back-end/authentication/authentication.iml" />
+      <module fileurl="file://$PROJECT_DIR$/back-end/company/company.iml" filepath="$PROJECT_DIR$/back-end/company/company.iml" />
+      <module fileurl="file://$PROJECT_DIR$/back-end/elasticsearch/elasticsearch.iml" filepath="$PROJECT_DIR$/back-end/elasticsearch/elasticsearch.iml" />
+      <module fileurl="file://$PROJECT_DIR$/back-end/email/email.iml" filepath="$PROJECT_DIR$/back-end/email/email.iml" />
+      <module fileurl="file://$PROJECT_DIR$/back-end/eureka-server/eureka-server.iml" filepath="$PROJECT_DIR$/back-end/eureka-server/eureka-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/back-end/gateway/gateway.iml" filepath="$PROJECT_DIR$/back-end/gateway/gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/back-end/gitconfig/gitconfig.iml" filepath="$PROJECT_DIR$/back-end/gitconfig/gitconfig.iml" />
+      <module fileurl="file://$PROJECT_DIR$/back-end/inspection/inspection.iml" filepath="$PROJECT_DIR$/back-end/inspection/inspection.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/mcheckinspecoes.iml" filepath="$PROJECT_DIR$/.idea/mcheckinspecoes.iml" />
+      <module fileurl="file://$PROJECT_DIR$/back-end/user/user.iml" filepath="$PROJECT_DIR$/back-end/user/user.iml" />
+    </modules>
+  </component>
+</project>
