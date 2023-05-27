@@ -10,7 +10,8 @@ import javax.persistence.Id;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "Enterprise")
+@Entity
+@Table(name = "TB_Enterprises")
 public class Enterprise {
     @Id
     private Long id;

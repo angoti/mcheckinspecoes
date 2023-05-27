@@ -15,7 +15,8 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "Inspections")
+@Entity
+@Table(name = "TB_Inspections")
 public class Inspection {
     @Id
     private Long id;
@@ -28,6 +29,4 @@ public class Inspection {
     private Date dateInspection = new Date();
     @OneToMany
     private List<Item> itemsList =  new ArrayList<>();
-
-
 }

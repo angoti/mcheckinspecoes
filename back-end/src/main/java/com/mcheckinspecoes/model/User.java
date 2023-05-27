@@ -14,7 +14,8 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "User")
+@Entity
+@Table(name = "TB_Users")
 public class User {
     @Id
     private Long id;
