@@ -3,15 +3,15 @@
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
-        <option value="$PROJECT_DIR$/user/pom.xml" />
-        <option value="$PROJECT_DIR$/email/pom.xml" />
-        <option value="$PROJECT_DIR$/company/pom.xml" />
-        <option value="$PROJECT_DIR$/gateway/pom.xml" />
-        <option value="$PROJECT_DIR$/gitconfig/pom.xml" />
-        <option value="$PROJECT_DIR$/inspection/pom.xml" />
-        <option value="$PROJECT_DIR$/elasticsearch/pom.xml" />
-        <option value="$PROJECT_DIR$/eureka-server/pom.xml" />
-        <option value="$PROJECT_DIR$/authentication/pom.xml" />
+        <option value="$PROJECT_DIR$/back-end/user/pom.xml" />
+        <option value="$PROJECT_DIR$/back-end/email/pom.xml" />
+        <option value="$PROJECT_DIR$/back-end/company/pom.xml" />
+        <option value="$PROJECT_DIR$/back-end/gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/back-end/gitconfig/pom.xml" />
+        <option value="$PROJECT_DIR$/back-end/inspection/pom.xml" />
+        <option value="$PROJECT_DIR$/back-end/elasticsearch/pom.xml" />
+        <option value="$PROJECT_DIR$/back-end/eureka-server/pom.xml" />
+        <option value="$PROJECT_DIR$/back-end/authentication/pom.xml" />
       </list>
     </option>
   </component>
