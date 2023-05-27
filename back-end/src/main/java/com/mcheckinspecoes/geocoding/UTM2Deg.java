@@ -1,4 +1,4 @@
-package com.mcheckinspecoes.mcheckinspecoes.geocoding;
+package com.mcheckinspecoes.geocoding;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

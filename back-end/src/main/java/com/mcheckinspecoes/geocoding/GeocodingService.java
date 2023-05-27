@@ -1,4 +1,4 @@
-package com.mcheckinspecoes.mcheckinspecoes.geocoding;
+package com.mcheckinspecoes.geocoding;
 
 import com.google.maps.GeoApiContext;
 import com.google.maps.GeocodingApi;

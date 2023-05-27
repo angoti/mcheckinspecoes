@@ -1,9 +1,10 @@
-package com.mcheckinspecoes.mcheckinspecoes.model;
+package com.mcheckinspecoes.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 

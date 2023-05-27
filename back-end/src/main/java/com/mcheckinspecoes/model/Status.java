@@ -1,4 +1,4 @@
-package com.mcheckinspecoes.mcheckinspecoes.model;
+package com.mcheckinspecoes.model;
 
 public enum Status {
     DEFAULT,

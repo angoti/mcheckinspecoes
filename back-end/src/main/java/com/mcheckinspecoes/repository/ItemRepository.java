@@ -1,6 +1,6 @@
-package com.mcheckinspecoes.mcheckinspecoes.repository;
+package com.mcheckinspecoes.repository;
 
-import com.mcheckinspecoes.mcheckinspecoes.model.Item;
+import com.mcheckinspecoes.model.Item;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

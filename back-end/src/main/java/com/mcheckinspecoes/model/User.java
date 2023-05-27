@@ -1,13 +1,12 @@
-package com.mcheckinspecoes.mcheckinspecoes.model;
+package com.mcheckinspecoes.model;
 
+import com.mcheckinspecoes.model.Enterprise;
+import com.mcheckinspecoes.model.Inspection;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
