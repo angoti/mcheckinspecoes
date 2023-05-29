@@ -34,6 +34,7 @@ public class EnterpriseServiceImpl implements EnterpriseService {
             oldEnterprise.setInspectorName(enterprise.getInspectorName());
             oldEnterprise.setInspectorPhone(enterprise.getInspectorPhone());
             enterpriseRepository.save(oldEnterprise);
+            return oldEnterprise;
 
         }catch (Exception e){
             e.printStackTrace();

@@ -34,6 +34,7 @@ public class ItemServiceImpl implements ItemService{
             oldItem.setStatus(item.getStatus());
             oldItem.setObservations(item.getObservations());
             itemRepository.save(oldItem);
+            return oldItem;
         }catch (Exception e){
             e.printStackTrace();
         }

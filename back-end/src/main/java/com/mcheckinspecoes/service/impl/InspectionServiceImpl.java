@@ -36,6 +36,7 @@ public class InspectionServiceImpl implements InspectionService {
             oldInspection.setCoordinatesUtmE(inspection.getCoordinatesUtmE());
             oldInspection.setCoordinatesUtmM(inspection.getCoordinatesUtmM());
             inspectionRepository.save(oldInspection);
+            return oldInspection;
         }catch (Exception e){
             e.printStackTrace();
         }
