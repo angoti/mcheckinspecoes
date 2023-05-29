@@ -1,6 +1,6 @@
 package com.mcheckinspecoes.controller;
 
-import com.google.maps.model.LatLng;
+
 import com.mcheckinspecoes.geocoding.GeocodingService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;

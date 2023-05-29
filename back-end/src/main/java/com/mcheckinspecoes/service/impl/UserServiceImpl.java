@@ -36,6 +36,21 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User update(User user) {
+        try {
+           User oldUser = userRepository.findById(user.getId()).get();
+           oldUser.setEmail(user.getEmail());
+           oldUser.setName(user.getName());
+           oldUser.setPassword(user.getPassword());
+           userRepository.save(oldUser);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
     public boolean existsByUsername(String name){
         return userRepository.existsByUsername(name);
     }

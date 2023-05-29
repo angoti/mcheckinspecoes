@@ -26,6 +26,21 @@ public class ItemServiceImpl implements ItemService{
     }
 
     @Override
+    public Item update(Item item) {
+        try {
+            Item oldItem = itemRepository.findById(item.getId()).get();
+            oldItem.setItemName(item.getItemName());
+            oldItem.setItemImage(item.getItemImage());
+            oldItem.setStatus(item.getStatus());
+            oldItem.setObservations(item.getObservations());
+            itemRepository.save(oldItem);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
     public void delete(Item item) {
         itemRepository.delete(item);
     }

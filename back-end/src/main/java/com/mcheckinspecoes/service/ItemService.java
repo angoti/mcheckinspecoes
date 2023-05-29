@@ -11,6 +11,8 @@ public interface ItemService {
 
     Optional<Item> findById(Long id);
 
+    Item update(Item item);
+
     void delete(Item item);
 
     void save(Item item);
