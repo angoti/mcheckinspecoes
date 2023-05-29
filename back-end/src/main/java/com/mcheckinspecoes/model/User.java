@@ -1,7 +1,5 @@
 package com.mcheckinspecoes.model;
 
-import com.mcheckinspecoes.model.Enterprise;
-import com.mcheckinspecoes.model.Inspection;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

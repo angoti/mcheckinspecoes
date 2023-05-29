@@ -9,7 +9,7 @@ public interface UserService {
 
     List<User> findAll();
 
-    Optional<User> findById(Long Id);
+    Optional<User> findById(Long id);
 
     void delete(User user);
 
