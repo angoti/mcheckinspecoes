@@ -26,6 +26,23 @@ public class EnterpriseServiceImpl implements EnterpriseService {
     }
 
     @Override
+    public Enterprise update(Enterprise enterprise) {
+        try {
+            Enterprise oldEnterprise =  enterpriseRepository.findById(enterprise.getId()).get();
+            oldEnterprise.setEnterpriseName(enterprise.getEnterpriseName());
+            oldEnterprise.setInspectorEmail(enterprise.getInspectorEmail());
+            oldEnterprise.setInspectorName(enterprise.getInspectorName());
+            oldEnterprise.setInspectorPhone(enterprise.getInspectorPhone());
+            enterpriseRepository.save(oldEnterprise);
+            return oldEnterprise;
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
     public void delete(Enterprise enterprise) {
         enterpriseRepository.delete(enterprise);
     }

@@ -11,6 +11,8 @@ public interface EnterpriseService {
 
     Optional<Enterprise> findById(Long id);
 
+    Enterprise update(Enterprise enterprise);
+
     void delete(Enterprise enterprise);
 
     void save(Enterprise enterprise);

@@ -15,6 +15,8 @@ public interface UserService {
 
     void save(User user);
 
+    User update(User user);
+
     boolean existsByUsername(String name);
 
     boolean existsByEmail(String email);

@@ -26,6 +26,24 @@ public class InspectionServiceImpl implements InspectionService {
     }
 
     @Override
+    public Inspection update(Inspection inspection) {
+        try {
+            Inspection oldInspection = inspectionRepository.findById(inspection.getId()).get();
+            oldInspection.setDateInspection(inspection.getDateInspection());
+            oldInspection.setInspectionLocation(inspection.getInspectionLocation());
+            oldInspection.setInspectionName(inspection.getInspectionName());
+            oldInspection.setEnterprise(inspection.getEnterprise());
+            oldInspection.setCoordinatesUtmE(inspection.getCoordinatesUtmE());
+            oldInspection.setCoordinatesUtmM(inspection.getCoordinatesUtmM());
+            inspectionRepository.save(oldInspection);
+            return oldInspection;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
     public void delete(Inspection inspection) {
         inspectionRepository.delete(inspection);
     }
