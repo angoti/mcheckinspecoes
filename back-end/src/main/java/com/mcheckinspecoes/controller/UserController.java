@@ -24,22 +24,48 @@ public class UserController {
     }
 
     @GetMapping("/{userId}")
-    public ResponseEntity<User> getById(@PathVariable(value = "userId")Long id) {
-        User user = userService.findById(id);
-        return ResponseEntity.status(HttpStatus.OK).body(user);
+    public ResponseEntity<User> getById(@PathVariable(value = "userId") Long id) {
+        Optional<User> user = userService.findById(id);
+        return ResponseEntity.status(HttpStatus.OK).body(user.get());
     }
 
-//    @DeleteMapping("{userId}")
-//    public ResponseEntity<Object> deleteUser(@PathVariable(value = "userId") Long id) {
-//        Optional<User> user = userService.findById(id);
-//    }
+    @DeleteMapping("/{userId}")
+    public ResponseEntity<Object> deleteUser(@PathVariable(value = "userId") Long id) {
+        Optional<User> userOptional = userService.findById(id);
+        if (!userOptional.isPresent()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não encontrado");
+        } else {
+            userService.delete(userOptional.get());
+            return ResponseEntity.status(HttpStatus.OK).body("Usuário deletado com sucesso");
+        }
+    }
 
+    @PutMapping("/{userId}")
+    public ResponseEntity<Object> update(@PathVariable(value = "userId") Long id,
+                                         @RequestBody User user) {
+        Optional<User> userOptional = userService.findById(id);
+        if (userOptional.isPresent()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não encontrado");
+        } else {
+            var userModel = userOptional.get();
+            userModel.setName(user.getName());
+            userModel.setEmail(user.getEmail());
+            userService.save(userModel);
+            return ResponseEntity.status(HttpStatus.OK).body(userModel);
+        }
+    }
 
-//    void delete(User user);
-//
-//    void save(User user);
-//
-//    boolean existsByUsername(String name);
-//
-//    boolean existsByEmail(String email);
+    @PutMapping("/{userId}/password")
+    public ResponseEntity<Object> updatePassword(@PathVariable Long id,
+                                                 @RequestBody User user) {
+        Optional<User> userOptional = userService.findById(id);
+        if (!userOptional.isPresent()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não encontrado");
+        } else {
+            var userModel = userOptional.get();
+            userModel.setPassword(user.getPassword());
+            userService.save(userModel);
+            return ResponseEntity.status(HttpStatus.OK).body("Senha atualizada com sucesso");
+        }
+    }
 }
