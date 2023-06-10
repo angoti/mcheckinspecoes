@@ -3,20 +3,18 @@ package com.mcheckinspecoes.service.impl;
 import com.mcheckinspecoes.model.User;
 import com.mcheckinspecoes.repository.UserRepository;
 import com.mcheckinspecoes.service.UserService;
+import org.hibernate.ObjectNotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
 
-    private final UserRepository userRepository;
-
-    public UserServiceImpl(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+    @Autowired
+    UserRepository userRepository;
 
     @Override
     public List<User> findAll() {
@@ -25,12 +23,15 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Optional<User> findById(Long id) {
-        return userRepository.findById(id);
+        Optional<User> user = userRepository.findById(id);
+        if(user ==null) {
+            throw new ObjectNotFoundException(id, "Usuário não encontrado!");
+        }
+        return user;
     }
 
     @Override
-    public void delete(Long id) {
-        User user = userRepository.findById(id).orElseThrow(NoSuchElementException::new);
+    public void delete(User user) {
         userRepository.delete(user);
     }
 
@@ -40,25 +41,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User update(Long id, User user) {
+    public User update(User user) {
         try {
-            Optional<User> optionalUser = userRepository.findById(id);
-            if (optionalUser.isPresent()) {
-                User oldUser = optionalUser.get();
-                oldUser.setEmail(user.getEmail());
-                oldUser.setUsername(user.getUsername());
-                oldUser.setPassword(user.getPassword());
-                return userRepository.save(oldUser);
-            } else {
-                throw new IllegalArgumentException("User not found with ID: " + user.getId());
-            }
-        } catch (Exception e) {
+           User oldUser = userRepository.findById(user.getId()).get();
+           oldUser.setEmail(user.getEmail());
+           oldUser.setName(user.getName());
+           oldUser.setPassword(user.getPassword());
+           userRepository.save(oldUser);
+           return oldUser;
+
+        }catch (Exception e){
             e.printStackTrace();
         }
         return null;
     }
-
-
 
     @Override
     public boolean existsByUsername(String name){
