@@ -1,0 +1,129 @@
+{
+	"info": {
+		"_postman_id": "a5fc8abc-49fe-43dc-9369-5625c27c7fe8",
+		"name": "3_INSPECTION",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23040083",
+		"_collection_link": "https://interstellar-meadow-950227.postman.co/workspace/MCHECK-INSPECOES~d94c8df1-e0c5-4bca-9056-2225cc3cf74f/collection/23040083-a5fc8abc-49fe-43dc-9369-5625c27c7fe8?action=share&creator=23040083&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "INSPECTION_GET_ALL",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/inspection",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"inspection"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "INSPECTION_GET_ONE",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/inspection/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"inspection",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "INSPECTION_POST",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"inspectionName\": \"Inspecão de torres\",\r\n    \"inspectionLocation\":\"Tore A52\",\r\n    \"enterprise\": {\r\n        \"id\": 1\r\n    },\r\n    \"itemsList\": [\r\n        {\r\n            \"id\": 1\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/inspection",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"inspection"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "INSPECTION_PUT",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"inspectionName\": \"Inspecão de torres 1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/inspection/update/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"inspection",
+						"update",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "INSPECTION_DELETE",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/inspection/delete/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"inspection",
+						"delete",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

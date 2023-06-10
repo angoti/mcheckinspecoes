@@ -1,7 +1,6 @@
 package com.mcheckinspecoes.service.impl;
 
 import com.mcheckinspecoes.model.Inspection;
-import com.mcheckinspecoes.model.User;
 import com.mcheckinspecoes.repository.InspectionRepository;
 import com.mcheckinspecoes.service.InspectionService;
 import org.springframework.beans.factory.annotation.Autowired;

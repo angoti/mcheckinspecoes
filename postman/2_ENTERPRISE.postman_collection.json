@@ -1,0 +1,129 @@
+{
+	"info": {
+		"_postman_id": "94da9cc2-cdae-4082-bff1-142ec134eb8c",
+		"name": "2_ENTERPRISE",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23040083",
+		"_collection_link": "https://interstellar-meadow-950227.postman.co/workspace/MCHECK-INSPECOES~d94c8df1-e0c5-4bca-9056-2225cc3cf74f/collection/23040083-94da9cc2-cdae-4082-bff1-142ec134eb8c?action=share&creator=23040083&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "ENTERPRISE_GET_ALL",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/enterprise",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"enterprise"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ENTERPRISE_GET_ONE",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/enterprise/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"enterprise",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ENTERPRISE_POST",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"enterpriseName\": \"Camilo S/A\",\r\n    \"inspectorName\": \"Camilo\",\r\n    \"inspectorPhone\": \"34998648710\",\r\n    \"inspectorEmail\": \"camilinho@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/enterprise",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"enterprise"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ENTERPRISE_PUT",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"enterpriseName\": \"Camilo S/A\",\r\n    \"inspectorName\": \"Camilo1\",\r\n    \"inspectorPhone\": \"34998648710\",\r\n    \"inspectorEmail\": \"camilinho@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/enterprise/update/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"enterprise",
+						"update",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ENTERPRISE_DELETE",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/enterprise/delete/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"enterprise",
+						"delete",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

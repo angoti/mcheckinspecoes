@@ -1,0 +1,130 @@
+{
+	"info": {
+		"_postman_id": "f9dd52a0-ee82-4144-b850-c12371de0b12",
+		"name": "4_ITEMS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23040083",
+		"_collection_link": "https://interstellar-meadow-950227.postman.co/workspace/MCHECK-INSPECOES~d94c8df1-e0c5-4bca-9056-2225cc3cf74f/collection/23040083-f9dd52a0-ee82-4144-b850-c12371de0b12?action=share&creator=23040083&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "ITEM_GET_ALL",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/item",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"item"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ITEM_GET_ONE",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/item/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"item",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ITEM_POST",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "itemImage",
+							"type": "file",
+							"src": "/C:/Users/ajsan/Downloads/mesa-de-marmore-carrara-Pinterest.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/item/save-image",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"item",
+						"save-image"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ITEM_PUT",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"itemName\": \"Mesa marmore\",\r\n    \"status\": \"1\",\r\n    \"observations\": \"N/A\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/item/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"item",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ITEM_DELETE",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/item/delete/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"item",
+						"delete",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
