@@ -16,6 +16,7 @@ import java.util.List;
 @Table(name = "TB_Inspections")
 public class Inspection {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String inspectionName;
     @OneToOne

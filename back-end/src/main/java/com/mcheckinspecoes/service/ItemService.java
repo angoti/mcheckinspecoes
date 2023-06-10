@@ -1,7 +1,9 @@
 package com.mcheckinspecoes.service;
 
 import com.mcheckinspecoes.model.Item;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,9 +15,9 @@ public interface ItemService {
 
     Item update(Item item);
 
-    void delete(Item item);
+    void delete(Long id);
 
-    void save(Item item);
+    Long save(MultipartFile itemImage) throws IOException;
 
     boolean existsByItemName(String name);
 }

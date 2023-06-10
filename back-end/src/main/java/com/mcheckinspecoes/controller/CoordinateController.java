@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class CoordinateController {
-    private GeocodingService geocodingService;
+    private final GeocodingService geocodingService;
 
     public CoordinateController() {
         geocodingService = new GeocodingService("YOUR_API_KEY");

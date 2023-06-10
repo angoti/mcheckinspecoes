@@ -11,11 +11,11 @@ public interface UserService {
 
     Optional<User> findById(Long id);
 
-    void delete(User user);
+    void delete(Long id);
 
     void save(User user);
 
-    User update(User user);
+    User update(Long id, User user);
 
     boolean existsByUsername(String name);
 

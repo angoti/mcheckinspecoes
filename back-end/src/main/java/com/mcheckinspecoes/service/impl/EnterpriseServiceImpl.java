@@ -3,17 +3,19 @@ package com.mcheckinspecoes.service.impl;
 import com.mcheckinspecoes.model.Enterprise;
 import com.mcheckinspecoes.repository.EnterpriseRepository;
 import com.mcheckinspecoes.service.EnterpriseService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class EnterpriseServiceImpl implements EnterpriseService {
 
-    @Autowired
-    EnterpriseRepository enterpriseRepository;
+
+    private final EnterpriseRepository enterpriseRepository;
+
+    public EnterpriseServiceImpl(EnterpriseRepository enterpriseRepository) {
+        this.enterpriseRepository = enterpriseRepository;
+    }
 
     @Override
     public List<Enterprise> findAll() {
@@ -26,24 +28,28 @@ public class EnterpriseServiceImpl implements EnterpriseService {
     }
 
     @Override
-    public Enterprise update(Enterprise enterprise) {
+    public Enterprise update(Long id, Enterprise enterprise) {
         try {
-            Enterprise oldEnterprise =  enterpriseRepository.findById(enterprise.getId()).get();
-            oldEnterprise.setEnterpriseName(enterprise.getEnterpriseName());
-            oldEnterprise.setInspectorEmail(enterprise.getInspectorEmail());
-            oldEnterprise.setInspectorName(enterprise.getInspectorName());
-            oldEnterprise.setInspectorPhone(enterprise.getInspectorPhone());
-            enterpriseRepository.save(oldEnterprise);
-            return oldEnterprise;
-
-        }catch (Exception e){
+            Optional<Enterprise> optionalEnterprise = enterpriseRepository.findById(id);
+            if (optionalEnterprise.isPresent()) {
+                Enterprise oldEnterprise = optionalEnterprise.get();
+                oldEnterprise.setEnterpriseName(enterprise.getEnterpriseName());
+                oldEnterprise.setInspectorEmail(enterprise.getInspectorEmail());
+                oldEnterprise.setInspectorName(enterprise.getInspectorName());
+                oldEnterprise.setInspectorPhone(enterprise.getInspectorPhone());
+                return enterpriseRepository.save(oldEnterprise);
+            } else {
+                throw new IllegalArgumentException("Enterprise not found with ID: " + enterprise.getId());
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
 
     @Override
-    public void delete(Enterprise enterprise) {
+    public void delete(Long id) {
+        Enterprise enterprise = enterpriseRepository.findById(id).orElseThrow(NoSuchElementException::new);
         enterpriseRepository.delete(enterprise);
     }
 

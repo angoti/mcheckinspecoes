@@ -11,9 +11,9 @@ public interface InspectionService {
 
     Optional<Inspection> findById(Long id);
 
-    Inspection update(Inspection inspection);
+    Inspection update(Long id, Inspection inspection);
 
-    void delete(Inspection inspection);
+    void delete(Long id);
 
     void save(Inspection inspection);
 
