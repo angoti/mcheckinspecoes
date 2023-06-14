@@ -20,4 +20,6 @@ public class Item {
     private String itemName;
     private Status status;
     private String observations;
+    @ManyToOne
+    private Inspection inspection;
 }

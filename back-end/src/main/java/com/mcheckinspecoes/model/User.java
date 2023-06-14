@@ -22,6 +22,6 @@ public class User {
     private String password;
     @OneToMany
     private List<Inspection> inspecoesList = new ArrayList<>();
-    @ManyToMany
-    private List<Enterprise> enterpriseList = new ArrayList<>();
+    @OneToOne
+    private Enterprise enterprise;
 }

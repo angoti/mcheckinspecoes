@@ -3,6 +3,7 @@ package com.mcheckinspecoes.controller;
 import com.mcheckinspecoes.model.Enterprise;
 import com.mcheckinspecoes.service.EnterpriseService;
 import com.mcheckinspecoes.service.impl.EnterpriseServiceImpl;
+import com.mcheckinspecoes.service.impl.UserServiceImpl;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,8 +15,11 @@ public class EnterpriseController implements EnterpriseService {
 
     private final EnterpriseServiceImpl enterpriseServiceImpl;
 
-    public EnterpriseController(EnterpriseServiceImpl enterpriseServiceImpl) {
+    private final UserServiceImpl userServiceImpl;
+
+    public EnterpriseController(EnterpriseServiceImpl enterpriseServiceImpl, UserServiceImpl userServiceImpl) {
         this.enterpriseServiceImpl = enterpriseServiceImpl;
+        this.userServiceImpl = userServiceImpl;
     }
 
     @Override
@@ -43,8 +47,8 @@ public class EnterpriseController implements EnterpriseService {
     }
 
     @Override
-    @PostMapping
-    public void save(Enterprise enterprise) {
+    @PostMapping("/{id}")
+    public void save(@RequestBody Enterprise enterprise) {
         enterpriseServiceImpl.save(enterprise);
     }
 

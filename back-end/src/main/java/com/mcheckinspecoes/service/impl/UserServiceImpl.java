@@ -2,15 +2,15 @@ package com.mcheckinspecoes.service.impl;
 
 import com.mcheckinspecoes.model.User;
 import com.mcheckinspecoes.repository.UserRepository;
+import com.mcheckinspecoes.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
-public class UserServiceImpl {
+public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
 
@@ -19,45 +19,57 @@ public class UserServiceImpl {
         this.userRepository = userRepository;
     }
 
+    @Override
     public List<User> findAll() {
         return userRepository.findAll();
     }
 
+    @Override
     public Optional<User> findById(Long id) {
         return userRepository.findById(id);
     }
 
+    @Override
     public void delete(Long id) {
-        User user = userRepository.findById(id).orElseThrow(NoSuchElementException::new);
+        User user = userRepository.findById(id).get();
         userRepository.delete(user);
     }
 
-    public User save(User user) {
+    @Override
+    public void save(User user) {
         userRepository.save(user);
-        return user;
     }
 
-    public User update(User user) {
+    @Override
+    public User update(Long id, User user) {
         try {
-           User oldUser = userRepository.findById(user.getId()).get();
-           oldUser.setEmail(user.getEmail());
-           oldUser.setUsername(user.getUsername());
-           oldUser.setPassword(user.getPassword());
-           userRepository.save(oldUser);
-           return oldUser;
-
-        }catch (Exception e){
+            Optional<User> optionalUser = userRepository.findById(id);
+            if (optionalUser.isPresent()) {
+                User oldUser = optionalUser.get();
+                oldUser.setUsername(user.getUsername());
+                oldUser.setPassword(user.getPassword());
+                oldUser.setEmail(user.getEmail());
+                return userRepository.save(oldUser);
+            } else {
+                throw new IllegalArgumentException("Enterprise not found with ID: " + user.getId());
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    public boolean existsByUsername(String name){
-        return userRepository.existsByUsername(name);
+    @Override
+    public User findByName(String name) {
+        User user = userRepository.findByUsername(name);
+        System.out.println(user);
+        return user;
     }
 
-    public boolean existsByEmail(String email) {
-        return userRepository.existsByEmail(email);
+    @Override
+    public User findByEmail(String email) {
+        User user = userRepository.findByEmail(email);
+        System.out.println(user);
+        return user;
     }
-
 }

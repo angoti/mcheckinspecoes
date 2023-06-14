@@ -17,7 +17,7 @@ public interface UserService {
 
     User update(Long id, User user);
 
-    boolean existsByUsername(String name);
+    User findByName(String name);
 
-    boolean existsByEmail(String email);
+    User findByEmail(String email);
 }
