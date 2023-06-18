@@ -1,6 +1,7 @@
 package com.mcheckinspecoes.service;
 
 import com.mcheckinspecoes.model.Item;
+import com.mcheckinspecoes.model.enums.Status;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -9,15 +10,15 @@ import java.util.Optional;
 
 public interface ItemService {
 
-    List<Item> findAll();
+
+    Item save(MultipartFile itemImage, String itemName, String status, String observations, Long inspectionId) throws IOException;
 
     Optional<Item> findById(Long id);
 
-    Item update(Item item);
+    List<Item> findAll();
+
+    Item update(Long id, Item item);
 
     void delete(Long id);
 
-    Long save(MultipartFile itemImage) throws IOException;
-
-    boolean existsByItemName(String name);
 }

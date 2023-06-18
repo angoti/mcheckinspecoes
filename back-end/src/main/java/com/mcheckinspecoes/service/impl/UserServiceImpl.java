@@ -3,7 +3,6 @@ package com.mcheckinspecoes.service.impl;
 import com.mcheckinspecoes.model.User;
 import com.mcheckinspecoes.repository.UserRepository;
 import com.mcheckinspecoes.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,14 +13,13 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
 
-    @Autowired
     public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
     @Override
-    public List<User> findAll() {
-        return userRepository.findAll();
+    public User save(User user) {
+        return userRepository.save(user);
     }
 
     @Override
@@ -30,46 +28,30 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void delete(Long id) {
-        User user = userRepository.findById(id).get();
-        userRepository.delete(user);
+    public List<User> findAll() {
+        return userRepository.findAll();
     }
 
     @Override
-    public void save(User user) {
-        userRepository.save(user);
-    }
+    public User update(Long id, User updateUser) {
 
-    @Override
-    public User update(Long id, User user) {
-        try {
-            Optional<User> optionalUser = userRepository.findById(id);
-            if (optionalUser.isPresent()) {
-                User oldUser = optionalUser.get();
-                oldUser.setUsername(user.getUsername());
-                oldUser.setPassword(user.getPassword());
-                oldUser.setEmail(user.getEmail());
-                return userRepository.save(oldUser);
-            } else {
-                throw new IllegalArgumentException("Enterprise not found with ID: " + user.getId());
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        User user = userRepository.findById(id).orElse(null);
+
+        if (user != null) {
+
+            user.setUsername(updateUser.getUsername());
+            user.setPassword(updateUser.getPassword());
+            user.setEmail(updateUser.getEmail());
+
+            return userRepository.save(user);
         }
         return null;
     }
 
     @Override
-    public User findByName(String name) {
-        User user = userRepository.findByUsername(name);
-        System.out.println(user);
-        return user;
+    public void delete(Long id) {
+        userRepository.deleteById(id);
     }
 
-    @Override
-    public User findByEmail(String email) {
-        User user = userRepository.findByEmail(email);
-        System.out.println(user);
-        return user;
-    }
+
 }

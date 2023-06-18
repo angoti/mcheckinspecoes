@@ -3,7 +3,6 @@ package com.mcheckinspecoes.controller;
 import com.mcheckinspecoes.model.Email;
 import com.mcheckinspecoes.model.Inspection;
 
-import com.mcheckinspecoes.service.InspectionService;
 import com.mcheckinspecoes.service.impl.EmailServiceImpl;
 import com.mcheckinspecoes.service.impl.InspectionServiceImpl;
 import org.springframework.web.bind.annotation.*;
@@ -12,53 +11,44 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/inspection")
-public class InspectionController implements InspectionService {
+@RequestMapping("/inspections")
+public class InspectionController {
 
-    private final InspectionServiceImpl inspectionServiceImpl;
+    private final InspectionServiceImpl inspectionService;
 
-    private final EmailServiceImpl emailServiceImpl;
+    private final EmailServiceImpl emailService;
 
-    public InspectionController(InspectionServiceImpl inspectionServiceImpl, EmailServiceImpl emailServiceImpl) {
-        this.inspectionServiceImpl = inspectionServiceImpl;
-        this.emailServiceImpl = emailServiceImpl;
+    public InspectionController(InspectionServiceImpl inspectionService, EmailServiceImpl emailService) {
+        this.inspectionService = inspectionService;
+        this.emailService = emailService;
     }
 
-    @Override
-    @GetMapping
-    public List<Inspection> findAll() {
-        return inspectionServiceImpl.findAll();
+
+    @PostMapping("/{id}")
+    public Inspection createInspection(@RequestBody Inspection inspection, @PathVariable Long id) {
+        return inspectionService.save(inspection, id);
     }
 
-    @Override
     @GetMapping("/{id}")
-    public Optional<Inspection> findById(@PathVariable Long id) {
-        return inspectionServiceImpl.findById(id);
+    public Optional<Inspection> getInspectionById(@PathVariable Long id) {
+        return inspectionService.findById(id);
     }
 
-    @Override
-    @PutMapping("/update/{id}")
-    public Inspection update(@PathVariable Long id, @RequestBody Inspection inspection) {
-        return inspectionServiceImpl.update(id, inspection);
+    @GetMapping
+    public List<Inspection> getAllInspections() {
+        return inspectionService.findAll();
     }
 
-    @Override
-    @DeleteMapping("/delete/{id}")
-    public void delete(@PathVariable Long id) {
-        inspectionServiceImpl.delete(id);
+    @PutMapping("/{id}")
+    public Inspection updateInspection(@PathVariable Long id, @RequestBody Inspection updatedInspection) {
+        return inspectionService.update(id, updatedInspection);
     }
 
-    @Override
-    @PostMapping
-    public void save(@RequestBody Inspection inspection) {
-        inspectionServiceImpl.save(inspection);
+    @DeleteMapping("/{id}")
+    public void deleteInspection(@PathVariable Long id) {
+        inspectionService.delete(id);
     }
 
-    @Override
-    @GetMapping("/name")
-    public boolean existsByInspectionName(@RequestBody String name) {
-        return inspectionServiceImpl.existsByInspectionName(name);
-    }
 
     @PostMapping("/send/email")
     public void sendNotification(@RequestBody Email email) {
@@ -66,6 +56,6 @@ public class InspectionController implements InspectionService {
         String subject = email.getSubject1();
         String body = email.getBody1();
 
-        emailServiceImpl.sendEmail(to, subject, body);
+        emailService.sendEmail(to, subject, body);
     }
 }

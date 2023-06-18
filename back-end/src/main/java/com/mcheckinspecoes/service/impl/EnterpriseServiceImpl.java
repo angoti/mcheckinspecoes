@@ -1,25 +1,38 @@
 package com.mcheckinspecoes.service.impl;
 
 import com.mcheckinspecoes.model.Enterprise;
+import com.mcheckinspecoes.model.User;
 import com.mcheckinspecoes.repository.EnterpriseRepository;
+import com.mcheckinspecoes.repository.UserRepository;
 import com.mcheckinspecoes.service.EnterpriseService;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EnterpriseServiceImpl implements EnterpriseService {
 
-
     private final EnterpriseRepository enterpriseRepository;
 
-    public EnterpriseServiceImpl(EnterpriseRepository enterpriseRepository) {
+    private final UserRepository userRepository;
+
+    public EnterpriseServiceImpl(EnterpriseRepository enterpriseRepository, UserRepository userRepository) {
         this.enterpriseRepository = enterpriseRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
-    public List<Enterprise> findAll() {
-        return enterpriseRepository.findAll();
+    public Enterprise save(Enterprise enterprise, Long userId) {
+        Optional<User> userOptional = userRepository.findById(userId);
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            enterprise.setUser(user);
+            user.setEnterprise(enterprise);
+            return enterpriseRepository.save(enterprise);
+        } else {
+            throw new IllegalArgumentException("User not found with ID: " + userId);
+        }
     }
 
     @Override
@@ -28,38 +41,25 @@ public class EnterpriseServiceImpl implements EnterpriseService {
     }
 
     @Override
-    public Enterprise update(Long id, Enterprise enterprise) {
-        try {
-            Optional<Enterprise> optionalEnterprise = enterpriseRepository.findById(id);
-            if (optionalEnterprise.isPresent()) {
-                Enterprise oldEnterprise = optionalEnterprise.get();
-                oldEnterprise.setEnterpriseName(enterprise.getEnterpriseName());
-                oldEnterprise.setInspectorEmail(enterprise.getInspectorEmail());
-                oldEnterprise.setInspectorName(enterprise.getInspectorName());
-                oldEnterprise.setInspectorPhone(enterprise.getInspectorPhone());
-                return enterpriseRepository.save(oldEnterprise);
-            } else {
-                throw new IllegalArgumentException("Enterprise not found with ID: " + enterprise.getId());
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+    public List<Enterprise> findAll() {
+        return enterpriseRepository.findAll();
+    }
+
+    @Override
+    public Enterprise update(Long id, Enterprise updatedEnterprise) {
+        Enterprise enterprise = enterpriseRepository.findById(id).orElse(null);
+        if (enterprise != null) {
+            enterprise.setEnterpriseName(updatedEnterprise.getEnterpriseName());
+            enterprise.setInspectorName(updatedEnterprise.getInspectorName());
+            enterprise.setInspectorPhone(updatedEnterprise.getInspectorPhone());
+            enterprise.setInspectorEmail(updatedEnterprise.getInspectorEmail());
+            return enterpriseRepository.save(enterprise);
         }
         return null;
     }
 
     @Override
     public void delete(Long id) {
-        Enterprise enterprise = enterpriseRepository.findById(id).orElseThrow(NoSuchElementException::new);
-        enterpriseRepository.delete(enterprise);
-    }
-
-    @Override
-    public void save(Enterprise enterprise) {
-        enterpriseRepository.save(enterprise);
-    }
-
-    @Override
-    public boolean existsByEnterpriseName(String name) {
-        return enterpriseRepository.existsByEnterpriseName(name);
+        enterpriseRepository.deleteById(id);
     }
 }

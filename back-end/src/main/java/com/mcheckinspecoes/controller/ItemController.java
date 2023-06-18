@@ -1,8 +1,10 @@
 package com.mcheckinspecoes.controller;
 
 import com.mcheckinspecoes.model.Item;
+import com.mcheckinspecoes.model.enums.Status;
 import com.mcheckinspecoes.service.ItemService;
 import com.mcheckinspecoes.service.impl.ItemServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -11,47 +13,49 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/item")
-public class ItemController implements ItemService {
+@RequestMapping("/items")
+public class ItemController {
 
-    private final ItemServiceImpl itemServiceImpl;
+    private final ItemServiceImpl itemService;
 
-    public ItemController(ItemServiceImpl itemServiceImpl) {
-        this.itemServiceImpl = itemServiceImpl;
+    @Autowired
+    public ItemController(ItemServiceImpl itemService) {
+        this.itemService = itemService;
     }
 
-    @Override
+    @PostMapping
+    public Item createItem(@RequestParam("itemImage") MultipartFile itemImage,
+                                           @RequestParam("itemName") String itemName,
+                                           @RequestParam("status") String status,
+                                           @RequestParam("observations") String observations,
+                                           @RequestParam("inspectionId") Long inspectionId) throws IOException {
+
+        return itemService.save(itemImage, itemName, status, observations, inspectionId);
+    }
+
+    @GetMapping("/{id}")
+    public Optional<Item> getItemById(@PathVariable Long id) {
+        return itemService.findById(id);
+    }
+
     @GetMapping
-    public List<Item> findAll() {
-        return itemServiceImpl.findAll();
+    public List<Item> getAllItems() {
+        return itemService.findAll();
     }
 
-    @Override
-    @GetMapping("{id}")
-    public Optional<Item> findById(@PathVariable Long id) {
-        return itemServiceImpl.findById(id);
+    @PutMapping("/{id}")
+    public Item updateItem(@PathVariable Long id, @RequestBody Item updatedItem) {
+        return itemService.update(id, updatedItem);
     }
 
-    @Override
-    @PutMapping("/update")
-    public Item update(@RequestBody Item item) {
-        return itemServiceImpl.update(item);
+    @DeleteMapping("/{id}")
+    public void deleteItem(@PathVariable Long id) {
+        itemService.delete(id);
     }
 
-    @Override
-    @DeleteMapping("/delete/{id}")
-    public void delete(@PathVariable Long id) {
-        itemServiceImpl.delete(id);
-    }
+//    @PostMapping(value = "/save-image", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+//    public Item save(@RequestParam() MultipartFile itemImage) throws IOException {
+//        return itemService.save(itemImage);
+//    }
 
-    @PostMapping("/save-image")
-    public Long save(@RequestParam() MultipartFile itemImage) throws IOException {
-        return itemServiceImpl.save(itemImage);
-    }
-
-    @Override
-    @GetMapping("/name")
-    public boolean existsByItemName(@RequestBody String name) {
-        return itemServiceImpl.existsByItemName(name);
-    }
 }

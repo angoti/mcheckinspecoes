@@ -1,5 +1,6 @@
 package com.mcheckinspecoes.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,11 +18,18 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String username;
     private String email;
     private String password;
-    @OneToMany
-    private List<Inspection> inspecoesList = new ArrayList<>();
-    @OneToOne
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference(value="user-inspection")
+    private List<Inspection> inspections = new ArrayList<>();
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JsonManagedReference(value="user-enterprise")
+    @JoinColumn(name = "enterprise_id")
     private Enterprise enterprise;
+
 }

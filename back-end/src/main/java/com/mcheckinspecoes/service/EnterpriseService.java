@@ -7,15 +7,14 @@ import java.util.Optional;
 
 public interface EnterpriseService {
 
-    List<Enterprise> findAll();
+    Enterprise save(Enterprise enterprise, Long id);
 
     Optional<Enterprise> findById(Long id);
+
+    List<Enterprise> findAll();
 
     Enterprise update(Long id, Enterprise enterprise);
 
     void delete(Long id);
 
-    void save(Enterprise enterprise);
-
-    boolean existsByEnterpriseName(String name);
 }

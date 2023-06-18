@@ -1,4 +1,6 @@
 package com.mcheckinspecoes.model;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.mcheckinspecoes.model.enums.Status;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,11 +17,16 @@ public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(columnDefinition = "LONGBLOB")
     private byte[] itemImage;
+
     private String itemName;
     private Status status;
     private String observations;
+
     @ManyToOne
+    @JsonBackReference(value="item-inspection")
+    @JoinColumn(name = "inspection_id")
     private Inspection inspection;
 }

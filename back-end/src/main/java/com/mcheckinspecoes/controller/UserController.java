@@ -10,55 +10,39 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/user")
-public class UserController implements UserService {
+@RequestMapping("/users")
+public class UserController {
 
-    private final UserServiceImpl userServiceImpl;
+
+    private final UserServiceImpl userService;
 
     @Autowired
-    public UserController(UserServiceImpl userServiceImpl) {
-        this.userServiceImpl = userServiceImpl;
+    public UserController(UserServiceImpl userService) {
+        this.userService = userService;
     }
 
-    @Override
-    @GetMapping
-    public List<User> findAll() {
-        return userServiceImpl.findAll();
-    }
-
-    @Override
-    @GetMapping("/{id}")
-    public Optional<User> findById(@PathVariable Long id) {
-        return userServiceImpl.findById(id);
-    }
-
-    @Override
-    @DeleteMapping("/delete/{id}")
-    public void delete(@PathVariable Long id) {
-        userServiceImpl.delete(id);
-    }
-
-    @Override
     @PostMapping
-    public void save(@RequestBody User user) {
-        userServiceImpl.save(user);
+    public User createUser(@RequestBody User user) {
+        return userService.save(user);
     }
 
-    @Override
-    @PutMapping("/update/{id}")
-    public User update(@PathVariable Long id, @RequestBody User user) {
-        return userServiceImpl.update(id,user);
+    @GetMapping("/{id}")
+    public Optional<User> getUserById(@PathVariable Long id) {
+        return userService.findById(id);
     }
 
-    @Override
-    @GetMapping("/email")
-    public User findByName(@RequestBody String name) {
-        return userServiceImpl.findByName(name);
+    @GetMapping
+    public List<User> getAllUsers() {
+        return userService.findAll();
     }
 
-    @Override
-    @GetMapping("/name")
-    public User findByEmail(@RequestBody String email) {
-        return userServiceImpl.findByEmail(email);
+    @PutMapping("/{id}")
+    public User updateUser(@PathVariable Long id, @RequestBody User updatedUser) {
+        return userService.update(id, updatedUser);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteUser(@PathVariable Long id) {
+        userService.delete(id);
     }
 }

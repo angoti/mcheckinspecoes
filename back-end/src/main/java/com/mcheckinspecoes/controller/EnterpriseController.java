@@ -1,60 +1,47 @@
 package com.mcheckinspecoes.controller;
 
 import com.mcheckinspecoes.model.Enterprise;
-import com.mcheckinspecoes.service.EnterpriseService;
 import com.mcheckinspecoes.service.impl.EnterpriseServiceImpl;
-import com.mcheckinspecoes.service.impl.UserServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/enterprise")
-public class EnterpriseController implements EnterpriseService {
+@RequestMapping("/enterprises")
+public class EnterpriseController {
 
-    private final EnterpriseServiceImpl enterpriseServiceImpl;
+    private final EnterpriseServiceImpl enterpriseService;
 
-    private final UserServiceImpl userServiceImpl;
-
-    public EnterpriseController(EnterpriseServiceImpl enterpriseServiceImpl, UserServiceImpl userServiceImpl) {
-        this.enterpriseServiceImpl = enterpriseServiceImpl;
-        this.userServiceImpl = userServiceImpl;
+    @Autowired
+    public EnterpriseController(EnterpriseServiceImpl enterpriseService) {
+        this.enterpriseService = enterpriseService;
     }
 
-    @Override
-    @GetMapping
-    public List<Enterprise> findAll() {
-        return enterpriseServiceImpl.findAll();
-    }
-
-    @Override
-    @GetMapping("/{id}")
-    public Optional<Enterprise> findById(@PathVariable Long id) {
-        return enterpriseServiceImpl.findById(id);
-    }
-
-    @Override
-    @PutMapping("/update/{id}")
-    public Enterprise update(@PathVariable Long id, @RequestBody Enterprise enterprise) {
-        return enterpriseServiceImpl.update(id, enterprise);
-    }
-
-    @Override
-    @DeleteMapping("/delete/{id}")
-    public void delete(@PathVariable Long id) {
-        enterpriseServiceImpl.delete(id);
-    }
-
-    @Override
     @PostMapping("/{id}")
-    public void save(@RequestBody Enterprise enterprise) {
-        enterpriseServiceImpl.save(enterprise);
+    public Enterprise createEnterprise(@RequestBody Enterprise enterprise, @PathVariable Long id) {
+        return enterpriseService.save(enterprise, id);
     }
 
-    @Override
-    @GetMapping("/name")
-    public boolean existsByEnterpriseName(@RequestBody String name) {
-        return enterpriseServiceImpl.existsByEnterpriseName(name);
+    @GetMapping("/{id}")
+    public Optional<Enterprise> getEnterpriseById(@PathVariable Long id) {
+        return enterpriseService.findById(id);
+    }
+
+    @GetMapping
+    public List<Enterprise> getAllEnterprises() {
+        return enterpriseService.findAll();
+    }
+
+    @PutMapping("/{id}")
+    public Enterprise updateEnterprise(@PathVariable Long id, @RequestBody Enterprise updatedEnterprise) {
+        return enterpriseService.update(id, updatedEnterprise);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteEnterprise(@PathVariable Long id) {
+        enterpriseService.delete(id);
     }
 }
+

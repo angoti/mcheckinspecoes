@@ -1,15 +1,17 @@
 package com.mcheckinspecoes.service.impl;
 
+import com.mcheckinspecoes.model.Inspection;
 import com.mcheckinspecoes.model.Item;
 import com.mcheckinspecoes.model.enums.Status;
+import com.mcheckinspecoes.repository.InspectionRepository;
 import com.mcheckinspecoes.repository.ItemRepository;
 import com.mcheckinspecoes.service.ItemService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -17,13 +19,30 @@ public class ItemServiceImpl implements ItemService {
 
     private final ItemRepository itemRepository;
 
-    public ItemServiceImpl(ItemRepository itemRepository) {
+    private final InspectionRepository inspectionRepository;
+
+    @Autowired
+    public ItemServiceImpl(ItemRepository itemRepository, InspectionRepository inspectionRepository) {
         this.itemRepository = itemRepository;
+        this.inspectionRepository = inspectionRepository;
     }
 
     @Override
-    public List<Item> findAll() {
-        return itemRepository.findAll();
+    public Item save(MultipartFile itemImage, String itemName, String status, String observations, Long inspectionId) throws IOException {
+
+        Item item = new Item();
+
+        item.setItemImage(itemImage.getBytes());
+        item.setItemName(itemName);
+        if(status.equals("1")){
+            item.setStatus(Status.COMPLIANT);
+        } else{
+            item.setStatus(Status.NOT_COMPLIANT);
+        }
+        item.setObservations(observations);
+        Inspection inspection = inspectionRepository.findById(inspectionId).get();
+        item.setInspection(inspection);
+        return itemRepository.save(item);
     }
 
     @Override
@@ -32,52 +51,24 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public Item update(Item item) {
-        try {
-            Optional<Item> optionalItem = itemRepository.findById(item.getId());
-            if (optionalItem.isPresent()) {
-                Item oldItem = optionalItem.get();
-                oldItem.setItemName(item.getItemName());
+    public List<Item> findAll() {
+        return itemRepository.findAll();
+    }
 
-                if (item.getStatus().toString().equals("1")) {
-                    oldItem.setStatus(Status.COMPLIANT);
-                } else {
-
-                    oldItem.setStatus(Status.NOT_COMPLIANT);
-                }
-                oldItem.setObservations(item.getObservations());
-                return itemRepository.save(oldItem);
-            } else {
-                throw new IllegalArgumentException("Item not found with ID: " + item.getId());
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+    @Override
+    public Item update(Long id, Item updatedItem) {
+        Item item = itemRepository.findById(id).orElse(null);
+        if (item != null) {
+            item.setItemName(updatedItem.getItemName());
+            item.setStatus(updatedItem.getStatus());
+            item.setObservations(updatedItem.getObservations());
+            return itemRepository.save(item);
         }
         return null;
     }
 
     @Override
     public void delete(Long id) {
-        Item item = itemRepository.findById(id).orElseThrow(NoSuchElementException::new);
-        itemRepository.delete(item);
+        itemRepository.deleteById(id);
     }
-
-    @Override
-    public Long save(MultipartFile itemImage) throws IOException {
-
-        byte[] imageBytes = itemImage.getBytes();
-
-        Item item = new Item();
-        item.setItemImage(imageBytes);
-
-        Item savedItem = itemRepository.save(item);
-
-        return savedItem.getId();
-    }
-
-    @Override
-    public boolean existsByItemName(String name) {
-        return itemRepository.existsByItemName(name);
-    }
-
 }

@@ -7,15 +7,14 @@ import java.util.Optional;
 
 public interface InspectionService {
 
-    List<Inspection> findAll();
+    Inspection save(Inspection inspection, Long id);
 
     Optional<Inspection> findById(Long id);
+
+    List<Inspection> findAll();
 
     Inspection update(Long id, Inspection inspection);
 
     void delete(Long id);
 
-    void save(Inspection inspection);
-
-    boolean existsByInspectionName(String name);
 }
