@@ -60,6 +60,14 @@ public class EnterpriseServiceImpl implements EnterpriseService {
 
     @Override
     public void delete(Long id) {
-       enterpriseRepository.deleteById(id);
+        Optional<Enterprise> optionalEnterprise = enterpriseRepository.findById(id);
+
+        if (optionalEnterprise.isPresent()) {
+            Enterprise enterprise = optionalEnterprise.get();
+            User user = enterprise.getUser();
+            user.setEnterprise(null);
+            userRepository.save(user);
+            enterpriseRepository.delete(enterprise);
+        }
     }
 }

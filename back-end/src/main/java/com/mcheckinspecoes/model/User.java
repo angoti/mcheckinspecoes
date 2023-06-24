@@ -27,8 +27,8 @@ public class User {
     @JsonManagedReference(value="user-inspection")
     private List<Inspection> inspections = new ArrayList<>();
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JsonManagedReference(value="user-enterprise")
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference(value = "user-enterprise")
     @JoinColumn(name = "enterprise_id")
     private Enterprise enterprise;
 
