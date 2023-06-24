@@ -13,14 +13,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/item",
+					"raw": "http://localhost:8080/items",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"item"
+						"items"
 					]
 				}
 			},
@@ -32,14 +32,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/item/1",
+					"raw": "http://localhost:8080/items/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"item",
+						"items",
 						"1"
 					]
 				}
@@ -55,6 +55,26 @@
 					"mode": "formdata",
 					"formdata": [
 						{
+							"key": "inspectionId",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "itemName",
+							"value": "Item 1",
+							"type": "text"
+						},
+						{
+							"key": "status",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "observations",
+							"value": "N/A",
+							"type": "text"
+						},
+						{
 							"key": "itemImage",
 							"type": "file",
 							"src": "/C:/Users/ajsan/Downloads/mesa-de-marmore-carrara-Pinterest.jpg"
@@ -62,15 +82,14 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost:8080/item/save-image",
+					"raw": "http://localhost:8080/items",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"item",
-						"save-image"
+						"items"
 					]
 				}
 			},
@@ -83,7 +102,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\": 1,\r\n    \"itemName\": \"Mesa marmore\",\r\n    \"status\": \"1\",\r\n    \"observations\": \"N/A\"\r\n}",
+					"raw": "{\r\n  \"inspectionId\": 1,\r\n  \"itemName\": \"Updated Item\",\r\n  \"status\": \"INACTIVE\",\r\n  \"observations\": \"Updated observations\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -91,15 +110,15 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/item/update",
+					"raw": "http://localhost:8080/items/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"item",
-						"update"
+						"items",
+						"1"
 					]
 				}
 			},
@@ -111,15 +130,14 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/item/delete/1",
+					"raw": "http://localhost:8080/items/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"item",
-						"delete",
+						"items",
 						"1"
 					]
 				}

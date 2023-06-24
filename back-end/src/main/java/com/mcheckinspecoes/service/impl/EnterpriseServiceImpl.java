@@ -60,6 +60,6 @@ public class EnterpriseServiceImpl implements EnterpriseService {
 
     @Override
     public void delete(Long id) {
-        enterpriseRepository.deleteById(id);
+       enterpriseRepository.deleteById(id);
     }
 }

@@ -13,14 +13,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/user",
+					"raw": "http://localhost:8080/users",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"user"
+						"users"
 					]
 				}
 			},
@@ -32,15 +32,15 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/user/1",
+					"raw": "http://localhost:8080/users/2",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"user",
-						"1"
+						"users",
+						"2"
 					]
 				}
 			},
@@ -53,7 +53,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"username\": \"Camilo\",\r\n  \"email\": \"camilinho@gmail.com\",\r\n  \"password\": \"camilobarreto\"\r\n}",
+					"raw": "{\r\n    \"username\": \"JohnDoe\",\r\n    \"email\": \"johndoe@example.com\",\r\n    \"password\": \"123456\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -61,14 +61,14 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/user",
+					"raw": "http://localhost:8080/users",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"user"
+						"users"
 					]
 				}
 			},
@@ -81,7 +81,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"username\": \"Camilo1\",\r\n  \"email\": \"camilinho@gmail.com\",\r\n  \"password\": \"camilobarreto\"\r\n}",
+					"raw": "{\r\n  \"username\": \"UpdatedUser\",\r\n  \"email\": \"updateduser@example.com\",\r\n  \"password\": \"654321\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -89,16 +89,15 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/user/update/1",
+					"raw": "http://localhost:8080/users/2",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"user",
-						"update",
-						"1"
+						"users",
+						"2"
 					]
 				}
 			},
@@ -110,15 +109,14 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/user/delete/1",
+					"raw": "http://localhost:8080/users/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"user",
-						"delete",
+						"users",
 						"1"
 					]
 				}

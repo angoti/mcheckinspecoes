@@ -13,14 +13,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/enterprise",
+					"raw": "http://localhost:8080/enterprises",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"enterprise"
+						"enterprises"
 					]
 				}
 			},
@@ -32,14 +32,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/enterprise/1",
+					"raw": "http://localhost:8080/enterprises/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"enterprise",
+						"enterprises",
 						"1"
 					]
 				}
@@ -53,7 +53,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"enterpriseName\": \"Camilo S/A\",\r\n    \"inspectorName\": \"Camilo\",\r\n    \"inspectorPhone\": \"34998648710\",\r\n    \"inspectorEmail\": \"camilinho@gmail.com\"\r\n}",
+					"raw": "{\r\n    \"enterpriseName\": \"Empresa ABC\",\r\n    \"inspectorName\": \"João Silva\",\r\n    \"inspectorPhone\": \"123456789\",\r\n    \"inspectorEmail\": \"joao@empresa.com\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -61,14 +61,15 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/enterprise",
+					"raw": "http://localhost:8080/enterprises/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"enterprise"
+						"enterprises",
+						"1"
 					]
 				}
 			},
@@ -81,7 +82,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"enterpriseName\": \"Camilo S/A\",\r\n    \"inspectorName\": \"Camilo1\",\r\n    \"inspectorPhone\": \"34998648710\",\r\n    \"inspectorEmail\": \"camilinho@gmail.com\"\r\n}",
+					"raw": "{\r\n    \"enterpriseName\": \"Nova Empresa ABC\",\r\n    \"inspectorName\": \"Maria Souza\",\r\n    \"inspectorPhone\": \"987654321\",\r\n    \"inspectorEmail\": \"maria@empresa.com\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -89,16 +90,15 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/enterprise/update/2",
+					"raw": "http://localhost:8080/enterprises/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"enterprise",
-						"update",
-						"2"
+						"enterprises",
+						"1"
 					]
 				}
 			},
@@ -110,16 +110,15 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/enterprise/delete/1",
+					"raw": "http://localhost:8080/enterprises/2",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"enterprise",
-						"delete",
-						"1"
+						"enterprises",
+						"2"
 					]
 				}
 			},

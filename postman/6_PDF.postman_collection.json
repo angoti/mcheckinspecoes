@@ -1,0 +1,32 @@
+{
+	"info": {
+		"_postman_id": "2ac6ce29-c409-4285-90a0-6c890f0203ba",
+		"name": "6_PDF",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23040083",
+		"_collection_link": "https://interstellar-meadow-950227.postman.co/workspace/MCHECK-INSPECOES~d94c8df1-e0c5-4bca-9056-2225cc3cf74f/collection/23040083-2ac6ce29-c409-4285-90a0-6c890f0203ba?action=share&creator=23040083&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "PDF_GET iREPORT",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/generate/pdf/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"generate",
+						"pdf",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

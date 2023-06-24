@@ -1,9 +1,7 @@
 package com.mcheckinspecoes.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -17,16 +15,19 @@ public class Enterprise {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(mappedBy = "enterprise", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "enterprise")
     @JsonBackReference(value="user-enterprise")
+    @ToString.Exclude
     private User user;
 
-    @OneToOne(mappedBy = "enterprise", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "enterprise")
     @JsonBackReference(value="inspection-enterprise")
+    @ToString.Exclude
     private Inspection inspection;
 
     private String enterpriseName;
     private String inspectorName;
     private String inspectorPhone;
     private String inspectorEmail;
+
 }

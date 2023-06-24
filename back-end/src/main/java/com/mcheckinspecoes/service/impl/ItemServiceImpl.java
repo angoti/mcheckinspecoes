@@ -2,7 +2,6 @@ package com.mcheckinspecoes.service.impl;
 
 import com.mcheckinspecoes.model.Inspection;
 import com.mcheckinspecoes.model.Item;
-import com.mcheckinspecoes.model.enums.Status;
 import com.mcheckinspecoes.repository.InspectionRepository;
 import com.mcheckinspecoes.repository.ItemRepository;
 import com.mcheckinspecoes.service.ItemService;
@@ -28,17 +27,13 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public Item save(MultipartFile itemImage, String itemName, String status, String observations, Long inspectionId) throws IOException {
+    public Item save(MultipartFile itemImage, String itemName, Integer status, String observations, Long inspectionId) throws IOException {
 
         Item item = new Item();
 
         item.setItemImage(itemImage.getBytes());
         item.setItemName(itemName);
-        if(status.equals("1")){
-            item.setStatus(Status.COMPLIANT);
-        } else{
-            item.setStatus(Status.NOT_COMPLIANT);
-        }
+        item.setStatusItem(status);
         item.setObservations(observations);
         Inspection inspection = inspectionRepository.findById(inspectionId).get();
         item.setInspection(inspection);
@@ -60,7 +55,7 @@ public class ItemServiceImpl implements ItemService {
         Item item = itemRepository.findById(id).orElse(null);
         if (item != null) {
             item.setItemName(updatedItem.getItemName());
-            item.setStatus(updatedItem.getStatus());
+            item.setStatusItem(updatedItem.getStatusItem());
             item.setObservations(updatedItem.getObservations());
             return itemRepository.save(item);
         }

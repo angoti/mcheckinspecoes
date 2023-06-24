@@ -1,32 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="sub_mcheck" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
-	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.zoom" value="1.610510000000001"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
+	<parameter name="INSPECTION_ID" class="java.lang.Integer" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT INSPECTION_ID,
+       ITEM_IMAGE,
+       ITEM_NAME,
+       OBSERVATIONS,
+       (CASE
+           WHEN STATUS_ITEM = 1 THEN 'Item conforme'
+           ELSE 'Item não conforme'
+       END) AS STATUS_ITEM
+FROM TB_ITEMS
+WHERE INSPECTION_ID = $P{INSPECTION_ID};]]>
+	</queryString>
+	<field name="INSPECTION_ID" class="java.lang.Long"/>
+	<field name="ITEM_IMAGE" class="java.io.InputStream"/>
+	<field name="ITEM_NAME" class="java.lang.String"/>
+	<field name="OBSERVATIONS" class="java.lang.String"/>
+	<field name="STATUS_ITEM" class="java.lang.String"/>
 	<background>
-		<band height="158" splitType="Stretch">
-			<rectangle>
-				<reportElement x="0" y="0" width="555" height="158"/>
-			</rectangle>
-		</band>
+		<band splitType="Stretch"/>
 	</background>
 	<detail>
-		<band height="149" splitType="Stretch">
+		<band height="235" splitType="Stretch">
 			<staticText>
-				<reportElement x="271" y="26" width="116" height="20"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle"/>
-				<text><![CDATA[Item inspecionado:]]></text>
+				<reportElement x="265" y="102" width="95" height="18"/>
+				<textElement textAlignment="Right" verticalAlignment="Top"/>
+				<text><![CDATA[Observação:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="271" y="65" width="116" height="20"/>
+				<reportElement x="265" y="67" width="95" height="20"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
 				<text><![CDATA[Status:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="271" y="100" width="116" height="20"/>
+				<reportElement x="265" y="28" width="95" height="20"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
-				<text><![CDATA[Observação:]]></text>
+				<text><![CDATA[Item inspecionado:]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="374" y="28" width="181" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{ITEM_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="374" y="102" width="181" height="114"/>
+				<textElement verticalAlignment="Top"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{OBSERVATIONS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="374" y="67" width="181" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{STATUS_ITEM}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="14" y="12" width="251" height="204"/>
+				<imageExpression class="java.io.InputStream"><![CDATA[$F{ITEM_IMAGE}]]></imageExpression>
+			</image>
+			<line>
+				<reportElement x="0" y="224" width="555" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
 		</band>
 	</detail>
 </jasperReport>

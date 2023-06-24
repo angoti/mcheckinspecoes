@@ -37,6 +37,7 @@ public class Inspection {
     private String coordinatesUtmM;
     private String coordinatesUtmE;
     private Date dateInspection = new Date();
+    private String signature;
 
     @OneToMany(mappedBy = "inspection", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference(value="item-inspection")

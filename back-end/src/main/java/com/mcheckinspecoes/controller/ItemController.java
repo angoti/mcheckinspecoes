@@ -26,7 +26,7 @@ public class ItemController {
     @PostMapping
     public Item createItem(@RequestParam("itemImage") MultipartFile itemImage,
                                            @RequestParam("itemName") String itemName,
-                                           @RequestParam("status") String status,
+                                           @RequestParam("status") Integer status,
                                            @RequestParam("observations") String observations,
                                            @RequestParam("inspectionId") Long inspectionId) throws IOException {
 

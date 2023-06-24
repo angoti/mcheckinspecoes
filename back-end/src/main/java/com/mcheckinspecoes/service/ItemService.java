@@ -11,7 +11,7 @@ import java.util.Optional;
 public interface ItemService {
 
 
-    Item save(MultipartFile itemImage, String itemName, String status, String observations, Long inspectionId) throws IOException;
+    Item save(MultipartFile itemImage, String itemName, Integer status, String observations, Long inspectionId) throws IOException;
 
     Optional<Item> findById(Long id);
 

@@ -13,14 +13,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/inspection",
+					"raw": "http://localhost:8080/inspections",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"inspection"
+						"inspections"
 					]
 				}
 			},
@@ -32,14 +32,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/inspection/1",
+					"raw": "http://localhost:8080/inspections/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"inspection",
+						"inspections",
 						"1"
 					]
 				}
@@ -53,7 +53,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"inspectionName\": \"Inspecão de torres\",\r\n    \"inspectionLocation\":\"Tore A52\",\r\n    \"enterprise\": {\r\n        \"id\": 1\r\n    },\r\n    \"itemsList\": [\r\n        {\r\n            \"id\": 1\r\n        }\r\n    ]\r\n}",
+					"raw": "{\r\n    \"inspectionName\": \"Inspection 1\",\r\n    \"inspectionLocation\": \"Location 1\",\r\n    \"coordinatesUtmM\": \"12345\",\r\n    \"coordinatesUtmE\": \"54321\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -61,14 +61,15 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/inspection",
+					"raw": "http://localhost:8080/inspections/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"inspection"
+						"inspections",
+						"1"
 					]
 				}
 			},
@@ -81,7 +82,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"inspectionName\": \"Inspecão de torres 1\"\r\n}",
+					"raw": "{\r\n    \"userId\": 1,\r\n    \"inspectionName\": \"Updated Inspection\",\r\n    \"inspectionLocation\": \"Updated Location\",\r\n    \"coordinatesUtmM\": \"98765\",\r\n    \"coordinatesUtmE\": \"56789\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -89,15 +90,14 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/inspection/update/1",
+					"raw": "http://localhost:8080/inspections/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"inspection",
-						"update",
+						"inspections",
 						"1"
 					]
 				}
@@ -110,15 +110,14 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/inspection/delete/1",
+					"raw": "http://localhost:8080/inspections/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"inspection",
-						"delete",
+						"inspections",
 						"1"
 					]
 				}

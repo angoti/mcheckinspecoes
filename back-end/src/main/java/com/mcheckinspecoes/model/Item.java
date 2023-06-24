@@ -1,7 +1,6 @@
 package com.mcheckinspecoes.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.mcheckinspecoes.model.enums.Status;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,7 +21,7 @@ public class Item {
     private byte[] itemImage;
 
     private String itemName;
-    private Status status;
+    private Integer statusItem;
     private String observations;
 
     @ManyToOne

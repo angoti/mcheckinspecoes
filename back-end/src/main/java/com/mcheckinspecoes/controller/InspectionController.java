@@ -55,7 +55,6 @@ public class InspectionController {
         String to = email.getEmail();
         String subject = email.getSubject1();
         String body = email.getBody1();
-
         emailService.sendEmail(to, subject, body);
     }
 }
