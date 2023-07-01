@@ -17,9 +17,11 @@
     "material-icons": "^1.13.8",
     "react": "18.2.0",
     "react-native": "0.71.8",
+    "react-native-checkbox": "^2.0.0",
     "react-native-reanimated": "~2.14.4",
     "react-native-safe-area-context": "4.5.0",
-    "react-native-screens": "~3.20.0"
+    "react-native-screens": "~3.20.0",
+    "react-native-signature-canvas": "^4.5.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
