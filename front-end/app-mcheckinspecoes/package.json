@@ -9,11 +9,13 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@react-navigation/drawer": "^6.6.3",
     "@react-navigation/native": "^6.1.7",
     "@react-navigation/native-stack": "^6.9.13",
     "expo": "~48.0.9",
     "expo-status-bar": "~1.4.4",
+    "font-awesome": "^4.7.0",
     "material-icons": "^1.13.8",
     "react": "18.2.0",
     "react-native": "0.71.8",
