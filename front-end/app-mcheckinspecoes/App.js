@@ -8,12 +8,13 @@ import LoginScreen from "./src/screens/login/Login";
 import CadastroScreen from "./src/screens/login/NovoUsuarioCadastro";
 import CadastroSenhaScreen from "./src/screens/login/NovoUsuarioCadastroSenha";
 import PerfilScreen from "./src/components/menu/Perfil";
+import HelpScreen from "./src/components/menu/Ajuda";
 
 export default function App() {
   return (
     <NavigationContainer>
       <StatusBar style="auto" />
-      <PerfilScreen />
+      <HelpScreen />
     </NavigationContainer>
   );
 }
