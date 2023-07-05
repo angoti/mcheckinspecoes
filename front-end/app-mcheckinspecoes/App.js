@@ -9,12 +9,13 @@ import CadastroScreen from "./src/screens/login/NovoUsuarioCadastro";
 import CadastroSenhaScreen from "./src/screens/login/NovoUsuarioCadastroSenha";
 import PerfilScreen from "./src/components/menu/Perfil";
 import HelpScreen from "./src/components/menu/Ajuda";
+import PasswordRecoveryScreen from "./src/screens/login/RecuperaSenha";
 
 export default function App() {
   return (
     <NavigationContainer>
       <StatusBar style="auto" />
-      <HelpScreen />
+      <PasswordRecoveryScreen />
     </NavigationContainer>
   );
 }
