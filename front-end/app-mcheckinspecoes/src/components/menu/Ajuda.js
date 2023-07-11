@@ -126,7 +126,10 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 20,
+<<<<<<< HEAD
     color: "#000c33",
+=======
+>>>>>>> 3f20efae2ad19ecc853de3a5bd27a4b1de39551d
   },
   messageInput: {
     height: 150,

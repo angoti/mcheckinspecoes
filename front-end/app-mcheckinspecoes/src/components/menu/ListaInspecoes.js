@@ -89,8 +89,12 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 16,
     fontWeight: 'bold',
+<<<<<<< HEAD
     textAlign: 'left',
     color: "#000c33"
+=======
+    textAlign: 'left'
+>>>>>>> 3f20efae2ad19ecc853de3a5bd27a4b1de39551d
   },
   localText: {
     fontSize: 16,
@@ -102,8 +106,16 @@ const styles = StyleSheet.create({
     paddingLeft: 40
   },
   data:{
+<<<<<<< HEAD
     color: 'gray',
   }
 });
 
 export default InspecoesScreen;
+=======
+    color: 'gray'
+  }
+});
+
+export default InspecoesScreen;
+>>>>>>> 3f20efae2ad19ecc853de3a5bd27a4b1de39551d

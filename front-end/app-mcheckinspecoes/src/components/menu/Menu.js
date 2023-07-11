@@ -1,10 +1,3 @@
-import {
-  DrawerContentScrollView,
-  DrawerItem,
-  DrawerItemList,
-  createDrawerNavigator,
-} from "@react-navigation/drawer";
-
 import React from "react";
 import { Alert, Image, Text, View,StyleSheet} from "react-native";
 import { Home } from "../../components/home/Home";
@@ -13,23 +6,23 @@ import ListaInspecoes from "../../components/menu/ListaInspecoes";
 import Perfil from "../../components/menu/Perfil";
 import { color } from "react-native-reanimated";
 
-const handleLogout = () => {
-  Alert.alert("Sair", "Tem certeza que deseja sair?", [
-    {
-      text: "Cancelar",
-      style: "cancel",
-    },
-    {
-      text: "Sair",
-      onPress: () => {
-        console.log("Logout realizado com sucesso!");
+const DrawerMenu = (props) => {
+  const handleLogout = () => {
+    Alert.alert("Sair", "Tem certeza que deseja sair?", [
+      {
+        text: "Cancelar",
+        style: "cancel",
       },
-      style: "destructive",
-    },
-  ]);
-};
+      {
+        text: "Sair",
+        onPress: () => {
+          console.log("Logout realizado com sucesso!");
+        },
+        style: "destructive",
+      },
+    ]);
+  };
 
-function CustomDrawerContent(props) {
   return (
     <DrawerContentScrollView {...props}>
       <View style={{ paddingHorizontal: 16, paddingTop: 32 }}>
